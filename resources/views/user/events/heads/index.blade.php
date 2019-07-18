@@ -1,7 +1,7 @@
 @extends('user.layouts.layout')
 
 @section('title')
-K'20 {{ $event->title }}
+K20 {{ $event ->title }}
 @endsection
 
 @section('head')
@@ -19,19 +19,19 @@ K'20 {{ $event->title }}
 		">
 		@if (Carbon\Carbon::now() < $event->start_date)
 			<div class="col-12 col-md-8 text-center ml-auto mr-auto">
-				<h1 style="font-family: 'Courgette', cursive;"><span style="color:crimson">K'20</span> {{ $event->title }} Starts in</h1>
+				<h1 style="font-family: 'Courgette', cursive;"><span style="color:crimson">K'20</span> Heads Hiring Starts in</h1>
 				<br>
 				<div class="clock"></div>
 				<div class="message"></div>
 			</div>
 		@elseif (Carbon\Carbon::now() > $event->end_date)
 			<div class="col-12 col-md-8 text-center ml-auto mr-auto">
-				<h1 style="font-family: 'Courgette', cursive;"><span style="color:crimson">K'20</span> {{ $event->title }} has been ended</h1>
+				<h1 style="font-family: 'Courgette', cursive;"><span style="color:crimson">K'20</span> Heads Hiring has been ended</h1>
 			</div>
 		@else
 
 		<div class="col-12 col-md-8 ml-auto mr-auto">
-			<h1 class="text-center" style="font-family: 'Courgette', cursive;"><span style="color:crimson">K'20</span> {{ $event->title }}</h1>
+			<h1 class="text-center" style="font-family: 'Courgette', cursive;"><span style="color:crimson">K'20</span> Heads Hiring!</h1>
 			@foreach ($errors->all() as $error)
 				<div class="card bg-danger p-3 text-white">{{ $error }}</div>
 			@endforeach

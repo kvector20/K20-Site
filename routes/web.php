@@ -55,6 +55,11 @@ Route::group(['namespace' => 'User'], function() {
 	
 	// -------------------------------- Heads -----------------------------------------------------
 	Route::get('/events/heads/20', 'eventsConteroller@heads20')->name('events.heads20');
+	
+	// -------------------------------- members -----------------------------------------------------
+	Route::get('/events/members/20', 'eventsConteroller@members20')->name('events.members20');
+	Route::POST('/events/members/20', 'eventsConteroller@members20Store')->name('events.members20');
+
 	// -------------------------------- Heads -----------------------------------------------------
 
 	Route::get('/k19/magazine/m/{month}', 'magazineController@index')->name('k19.magazine.month');
@@ -107,6 +112,8 @@ Route::group(['namespace' => 'Admin'],function(){
 	
 	Route::resource('admin/headsDescription', 'HeadsDescriptionController');
 	
+	Route::resource('admin/MembersFirst', 'Members20Controller');
+	
 	Route::GET('admin/participants19', 'Participants19Controller@index')->name('participants19.index');
 	Route::GET('admin/participants19/rejected', 'Participants19Controller@rejected')->name('participants19.rejected');
 	Route::POST('admin/participants19/rejected', 'Participants19Controller@rejectedStore')->name('participants19.rejected');
@@ -132,10 +139,14 @@ Route::group(['namespace' => 'Admin'],function(){
 
 	// High Board 20
 	Route::GET('admin/highboard20', 'HighBoard20Controller@index')->name('highboard20.index');
+	//Members 20
+	Route::GET('admin/members20', 'Members20Controller@index')->name('members20.index');
 
 	Route::GET('admin/file', 'Career6Controller@file');
 	Route::resource('admin/contact', 'ContactController');
 });
+
+    
 
 
 

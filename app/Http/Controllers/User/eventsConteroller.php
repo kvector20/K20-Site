@@ -9,6 +9,7 @@ use App\Models\Workshop;
 use App\Models\CWorkshop;
 use App\Models\Opening19;
 use App\Models\Highboard20;
+use App\Models\Members20;
 use App\Models\MemberSecond;
 use Illuminate\Http\Request;
 use App\Models\Participants19;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\OpeningRequest;
 use App\Mail\Career6ConfirmationMail;
 use App\Http\Requests\HighBoard20Request;
+use App\Http\Requests\members20Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\MembersSecondRequest;
 use App\Http\Requests\ParticipantsRecruitment19Request;
@@ -103,7 +105,7 @@ class eventsConteroller extends Controller
 
     public function career6Store(Request $request)
     {
-        $session = $request->session;
+        $session = $request-> session;
         $this->validate($request, [
             'name' => 'required|string|min:2',
             'session' => 'required|exists:c_workshops,id',
@@ -197,4 +199,29 @@ class eventsConteroller extends Controller
         $headsDescription = HeadsDescription::all();
         return view('user.events.heads.index', compact('event', 'headsDescription'));
     }
+
+    public function members20()
+    {
+        $committees = Workshop::whereBetween('id', [1,30])->get();
+        $event = Event::where('title', 'MembersRecruitment')->first();
+        return view('user.events.members20.membersfirstform20', compact('committees', 'event'));
+    }
+
+    public function members20Store(members20Request $request)
+    {
+        $member = new Members20;
+        $member->name = $request->name;
+        $member->email = $request->email;
+        $member->phone = $request->phone;
+        $member->facebook_link = $request->facebook_link;
+        $member->university = $request->university;
+        $member->faculty = $request->faculty;
+        $member->department = $request->department;
+        $member->academic_year = $request->academic_year;
+        $member->first = $request->first;
+        $member->second = $request->second;
+        $member->save();
+        return back()->with(['status' => 'You are registered successfully!!']);
+    }
+
 }

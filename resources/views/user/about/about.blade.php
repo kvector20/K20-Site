@@ -32,7 +32,7 @@
 
                 <div class="tab-pane fade show active " id="des">
                     <div class="content">
-                        <h3 class="head text-center"><b>kvector Committees</b></h3>
+                        <h2 class="head text-center"><b>kvector Committees</b></h2>
                         <div class="row" id="committees">
 
                         </div>

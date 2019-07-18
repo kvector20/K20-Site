@@ -20,7 +20,7 @@ class HomeController extends Controller
 
     public function workshops()
     {
-        $workshops = Workshop::where('type', 'academic')->orWhere('type', 'automotive')->get();
+        $workshops = Workshop::whereBetween('id', [1,30])->get();
     	return view('user.about.workshops', compact('workshops'));
     }
 }
